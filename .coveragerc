@@ -1,0 +1,7 @@
+[run]
+branch = True
+source = tempest_ec2
+omit = tempest_ec2/openstack/*
+
+[report]
+ignore-errors = True
