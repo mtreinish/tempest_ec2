@@ -15,14 +15,15 @@
 
 from oslo_log import log as logging
 
-from tempest.common.utils import data_utils
 from tempest.common.utils.linux import remote_client
 from tempest import config
 from tempest import exceptions
 from tempest import test
-from tempest.thirdparty.boto import test as boto_test
-from tempest.thirdparty.boto.utils import s3
-from tempest.thirdparty.boto.utils import wait
+from tempest_lib.common.utils import data_utils
+
+from tempest_ec2.tests.thirdparty.boto import test as boto_test
+from tempest_ec2.tests.thirdparty.boto.utils import s3
+from tempest_ec2.tests.thirdparty.boto.utils import wait
 
 CONF = config.CONF
 

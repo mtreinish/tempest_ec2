@@ -32,7 +32,7 @@ from tempest.common.utils import file_utils
 from tempest import config
 from tempest import exceptions
 import tempest.test
-from tempest.thirdparty.boto.utils import wait
+from tempest_ec2.tests.thirdparty.boto.utils import wait
 
 CONF = config.CONF
 LOG = logging.getLogger(__name__)

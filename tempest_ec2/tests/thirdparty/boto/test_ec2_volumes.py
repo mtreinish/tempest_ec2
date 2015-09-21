@@ -14,10 +14,10 @@
 #    under the License.
 
 from oslo_log import log as logging
-
 from tempest import config
 from tempest import test
-from tempest.thirdparty.boto import test as boto_test
+
+from tempest_ec2.tests.thirdparty.boto import test as boto_test
 
 CONF = config.CONF
 LOG = logging.getLogger(__name__)
