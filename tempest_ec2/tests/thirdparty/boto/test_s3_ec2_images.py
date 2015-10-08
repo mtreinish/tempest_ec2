@@ -19,7 +19,7 @@ from tempest import config
 from tempest import test
 from tempest_lib.common.utils import data_utils
 
-from tempest_ec2.tests.third_party.boto import test as boto_test
+from tempest_ec2.tests.thirdparty.boto import test as boto_test
 from tempest_ec2.tests.thirdparty.boto.utils import s3
 
 CONF = config.CONF
