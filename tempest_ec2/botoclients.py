@@ -88,13 +88,13 @@ class BotoClientBase(object):
         return self.connect_method(**self.connection_data)
 
     def get_aws_credentials(self, identity_client):
-        """
-        Obtain existing, or create new AWS credentials
+        """Obtain existing, or create new AWS credentials
+
         :param identity_client: identity client with embedded credentials
         :return: EC2 credentials
         """
         ec2_cred_list = identity_client.list_user_ec2_credentials(
-            identity_client.user_id)
+            identity_client.user_id)['credentials']
         for cred in ec2_cred_list:
             if cred['tenant_id'] == identity_client.tenant_id:
                 ec2_cred = cred
@@ -102,6 +102,7 @@ class BotoClientBase(object):
         else:
             ec2_cred = identity_client.create_user_ec2_credentials(
                 identity_client.user_id, identity_client.tenant_id)
+                ['credential'])
         if not all((ec2_cred, ec2_cred['access'], ec2_cred['secret'])):
             raise lib_exc.NotFound("Unable to get access and secret keys")
         else:
