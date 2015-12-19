@@ -29,7 +29,7 @@ class EC2KeysTest(boto_test.BotoTestCase):
     @classmethod
     def setup_clients(cls):
         super(EC2KeysTest, cls).setup_clients()
-        cls.client = cls.os.ec2api_client
+        cls.client = cls.ec2api_client
 
     @classmethod
     def resource_setup(cls):

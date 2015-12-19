@@ -35,8 +35,8 @@ class InstanceRunTest(boto_test.BotoTestCase):
     @classmethod
     def setup_clients(cls):
         super(InstanceRunTest, cls).setup_clients()
-        cls.s3_client = cls.os.s3_client
-        cls.ec2_client = cls.os.ec2api_client
+        cls.s3_client = cls.s3_client
+        cls.ec2_client = cls.ec2api_client
 
     @classmethod
     def resource_setup(cls):

@@ -24,7 +24,7 @@ class EC2SecurityGroupTest(boto_test.BotoTestCase):
     @classmethod
     def setup_clients(cls):
         super(EC2SecurityGroupTest, cls).setup_clients()
-        cls.client = cls.os.ec2api_client
+        cls.client = cls.ec2api_client
 
     @test.idempotent_id('519b566e-0c38-4629-905e-7d6b6355f524')
     def test_create_authorize_security_group(self):

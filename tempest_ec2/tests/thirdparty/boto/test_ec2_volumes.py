@@ -40,7 +40,7 @@ class EC2VolumesTest(boto_test.BotoTestCase):
     @classmethod
     def setup_clients(cls):
         super(EC2VolumesTest, cls).setup_clients()
-        cls.client = cls.os.ec2api_client
+        cls.client = cls.ec2api_client
 
     @classmethod
     def resource_setup(cls):
