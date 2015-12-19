@@ -30,8 +30,8 @@ class S3ImagesTest(boto_test.BotoTestCase):
     @classmethod
     def setup_clients(cls):
         super(S3ImagesTest, cls).setup_clients()
-        cls.s3_client = cls.os.s3_client
-        cls.images_client = cls.os.ec2api_client
+        cls.s3_client = cls.s3_client
+        cls.images_client = cls.ec2api_client
 
     @classmethod
     def resource_setup(cls):

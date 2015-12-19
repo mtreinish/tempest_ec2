@@ -29,13 +29,9 @@ class EC2TempestPlugin(plugins.TempestPlugin):
         return full_test_dir, base_path
 
     def register_opts(self, conf):
-        if not conf.get('boto', False):
+        if 'boto' not in conf:
             config.register_opt_group(conf, ec2_config.boto_group,
                                       ec2_config.BotoGroup)
-        if not conf.get('compute_feature_enabled', False):
-            if not hasattr(conf['compute_feature_enabled'], 'ec2_api'):
-                conf.register_opt(ec2_config.ec2_api_opt,
-                                  group='compute_feature_enabled')
 
     def get_opt_lists(self):
         return [('boto', config.BotoGroup)]

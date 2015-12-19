@@ -32,6 +32,8 @@ from tempest.common.utils import file_utils
 from tempest import config
 from tempest import exceptions
 import tempest.test
+
+from tempest_ec2 import botoclients
 from tempest_ec2.tests.thirdparty.boto.utils import wait
 
 CONF = config.CONF
@@ -201,10 +203,15 @@ class BotoTestCase(tempest.test.BaseTestCase):
     credentials = ['primary']
 
     @classmethod
+    def setup_clients(cls):
+        super(BotoTestCase, cls).setup_clients()
+        identity_client = cls.get_client_manager().identity_client
+        cls.ec2api_client = botoclients.APIClientEC2(identity_client)
+        cls.s3_client = botoclients.ObjectClientS3(identity_client)
+
+    @classmethod
     def skip_checks(cls):
         super(BotoTestCase, cls).skip_checks()
-        if not CONF.compute_feature_enabled.ec2_api:
-            raise cls.skipException("The EC2 API is not available")
         if not CONF.identity_feature_enabled.api_v2 or \
                 not CONF.identity.auth_version == 'v2':
             raise cls.skipException("Identity v2 is not available")
@@ -384,7 +391,7 @@ class BotoTestCase(tempest.test.BaseTestCase):
     def assertAddressDisassociatedWait(self, address):
 
         def _disassociate():
-            cli = self.ec2_client
+            cli = self.ec2api_client
             addresses = cli.get_all_addresses(addresses=(address.public_ip,))
             if len(addresses) != 1:
                 return "INVALID"
@@ -405,7 +412,7 @@ class BotoTestCase(tempest.test.BaseTestCase):
             # NOTE(afazekas): the filter gives back IP
             # even if it is not associated to my tenant
             if (address.public_ip not in map(lambda a: a.public_ip,
-                self.ec2_client.get_all_addresses())):
+                self.ec2api_client.get_all_addresses())):
                     return "DELETED"
             return "NOTDELETED"
 
