@@ -21,7 +21,7 @@ import boto.ec2
 import boto.s3.connection
 from six.moves import configparser as ConfigParser
 from six.moves.urllib import parse as urlparse
-from tempest_lib import exceptions as lib_exc
+from tempest.lib import exceptions as lib_exc
 
 from tempest import config
 

@@ -25,7 +25,7 @@ from boto import s3
 from oslo_log import log as logging
 import six
 from six.moves.urllib import parse as urlparse
-from tempest_lib import exceptions as lib_exc
+from tempest.lib import exceptions as lib_exc
 
 from tempest.common import credentials_factory as credentials
 from tempest.common.utils import file_utils
